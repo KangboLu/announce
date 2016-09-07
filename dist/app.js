@@ -94,10 +94,10 @@
 	            for (var i = 0; i < roster.result.length; i++) {
 	              users.push(roster.result[i].user_id);
 	            }
-	            /*Bebo.Notification.users(title, body, users, function(err, resp){
+	            Bebo.Notification.users(title, body, users, function(err, resp){
 	              if(err){ return console.log('error sending notification', err) };
 	              console.log('sent notification', resp);
-	            });*/
+	            });
 	          });
 	        }
 	      });
