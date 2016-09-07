@@ -1,11 +1,11 @@
 {
-  "name": "bebo-horn",
+  "name": "bebo-announce",
   "version": "0.1.0",
   "description": "sound the horn in bebo",
   "homepage": "https://bebo.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bebo-rooms/horn.git"
+    "url": "https://github.com/bebo-rooms/announce.git"
   },
   "dependencies": {
     "moment": "^2.14.1"
