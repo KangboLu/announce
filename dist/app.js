@@ -80,10 +80,8 @@
 	            console.log('got roster', roster);
 	            users = [];
 	            for (var i = 0; i < roster.result.length; i++) {
-	              console.log('roster.result[i].user_id', roster.result[i].user_id);
 	              users.push(roster.result[i].user_id);
 	            }
-	            console.log('users', users);
 	            Bebo.Notification.users(title, body, users, function(err, resp){
 	              if(err){ return console.log('error sending notification', err) };
 	              console.log('sent notification', resp);
