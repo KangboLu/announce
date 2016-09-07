@@ -77,8 +77,8 @@
 	      // Share announcement
 	      $('.announce--share--button').click(function(e) {
 	        if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
-	          var title = "&#x1f4e2";
-	          var body = $('.announce--input--text-entry').val();
+	          var title = "📢";
+	          var body = $('.announce--input--text-entry').val().toUpperCase();
 	          Bebo.getRoster(function(err, roster){
 	            if(err){ return console.log('error getting roster', err) };
 
