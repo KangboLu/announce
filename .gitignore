@@ -1,0 +1,11 @@
+node_modules/
+.idea/
+**/.DS_Store
+**/.sass-cache
+**/.sass-cache/*
+**/ver.txt
+node_modules
+awscli-bundle
+*.sass-cache*
+.DS_Store
+npm-debug.log

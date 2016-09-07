@@ -1,0 +1,179 @@
+// shared
+@import "shared/css/reset";
+@import "shared/css/loader";
+
+
+//  Variables
+// ----------------------------------------------------------------------------------  //
+
+
+// consts
+$buttonSize: 50px;
+
+// hot or not style guide
+$text-dark: #2F2F2F;
+$text-light-grey: #BBBBBB;
+$border: #F0F0F0;
+$btn-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.17);
+
+// colors
+$color-cold: #63A3ED;
+$color-hot:#F6523C;
+
+
+// Componenents
+// ----------------------------------------------------------------------------------  //
+
+// Main
+/*@import "./styles/main";
+@import "./styles/like";*/
+// Modals
+
+
+
+
+// Misc
+// ----------------------------------------------------------------------------------  //
+
+/*@import "./styles/cropper";*/
+
+@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
+$font-family-base: 'Montserrat', 'Open Sans', 'San Francisco', 'Roboto', 'Arial', sans-serif;
+
+input {
+  color: #fff;
+}
+
+* {
+  font-family: $font-family-base;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+body {
+  color: #fff;
+  font-family: 'Montserrat', 'Open Sans', 'Helvetica', 'San Francisco', 'Roboto', 'Arial', sans-serif;
+}
+
+.initial-load-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #000000;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  width: 100px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.meme-feed {
+  width: 100%;
+}
+
+.pull-to-refresh {
+  position: absolute;
+  top: -60px;
+  padding: 0;
+  padding-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.pull-to-refresh--spinner {
+  margin: 0 auto;
+  width: 30px;
+}
+
+.choose-photo {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.chose-photo--input {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.meme-editor {
+  text-align: center;
+}
+
+.add-meme {
+  width: 100%;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  -webkit-appearance: none;
+  padding: 1em;
+  font-size: 1em;
+  margin-bottom: 5em;
+}
+
+canvas {
+  width: 80%;
+}
+
+input[type=file] {
+  color: transparent;
+}
+
+input[type=file]::before {
+  content: url('assets/icon-camera-48.png');
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 40px;
+  margin-bottom: 1em;
+  width: 100%;
+  text-align: center;
+  -webkit-user-select: none;
+  -webkit-appearance: none;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  color: #000;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type=text] {
+  -webkit-appearance: none;
+  font-weight: 700;
+  padding: 1em;
+  font-size: 1em;
+  width: 90%;
+  text-transform: uppercase;
+}
+
+.meme-feed--memes--meme {
+  margin-bottom: 1.4em;
+}
+
+.meme-feed--memes--meme--image {
+  max-width: 100%;
+}
+
+.meme-feed--memes--meme--profile-photo {
+  margin: 1vh;
+  width: 24px;
+}
+
+.timestamp {
+  margin-top: 3vw;
+  color: #ccc;
+  font-size: .8em;
+  padding-right: 2vw;
+  float: right;
+}

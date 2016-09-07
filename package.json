@@ -1,0 +1,37 @@
+{
+  "name": "bebo-horn",
+  "version": "0.1.0",
+  "description": "sound the horn in bebo",
+  "homepage": "https://bebo.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bebo-rooms/horn.git"
+  },
+  "dependencies": {
+    "moment": "^2.14.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.9",
+    "webpack": "^1.13.2",
+    "webpack-stream": "^3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp develop",
+    "dist": "gulp build --e prod",
+    "serve": "gulp develop",
+    "serve:dist": "gulp develop --e prod"
+  },
+  "author": "Tyler Hayes",
+  "license": "ISC"
+}
