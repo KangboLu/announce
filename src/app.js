@@ -11,14 +11,38 @@ $(document).ready(function() {
       var me = user;
       console.log('me', me);
 
-      // show live text preview
+      /*
+        Listeners
+      */
+      // Preview text input
       $('.announce--input--text-entry').on('keyup', function(e) {
-        console.log(e);
         $('.header--text-preview').html(e.target.value);
         $('.announce--share--button').css('background-color', '#2cbf76');
         if (e.target.value.length === 0) {
           $('.header--text-preview').html("Halo @ Jason's NOW ⚡️");
           $('.announce--share--button').css('background-color', '#888');
+        }
+      });
+
+      // Share announcement
+      $('.announce--share--button').click(function(e) {
+        if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
+          var title = "";
+          var body = $('.announce--input--text-entry').val();
+          Bebo.getRoster(function(err, roster){
+            if(err){ return console.log('error getting roster', err) };
+            console.log('got roster', roster);
+            users = [];
+            for (var i = 0; i < roster.result.length; i++) {
+              console.log('roster.result[i].user_id', roster.result[i].user_id);
+              users.push(roster.result[i].user_id);
+            }
+            console.log('users', users);
+            Bebo.Notification.users(title, body, users, function(err, resp){
+              if(err){ return console.log('error sending notification', err) };
+              console.log('sent notification', resp);
+            });
+          });
         }
       });
     });
