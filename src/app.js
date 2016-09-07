@@ -11,7 +11,9 @@ $(document).ready(function() {
       var me = user;
       console.log('me', me);
 
-      default_text = "Halo @ Jason's NOW ⚡️";
+      default_text = "Halo @ Jason's NOW &#x1f46f";
+
+      $('.header--text-preview').html(default_text);
 
       /*
         Listeners
