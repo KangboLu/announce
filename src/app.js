@@ -29,7 +29,7 @@ $(document).ready(function() {
       // Share announcement
       $('.announce--share--button').click(function(e) {
         if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
-          var title = "";
+          var title = "ANNOUNCEMENT";
           var body = $('.announce--input--text-entry').val();
           Bebo.getRoster(function(err, roster){
             if(err){ return console.log('error getting roster', err) };
