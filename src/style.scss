@@ -87,7 +87,8 @@ body {
   height: 210px;
 }
 
-.announce--preview--header {
+.announce--preview--header,
+.announce-feed--header {
   text-transform: uppercase;
   font-size: .8em;
   font-weight: 600;
@@ -384,4 +385,54 @@ h1 {
 
 .announce--share--button img {
   width: 40px;
+}
+
+/* Feed section */
+
+.announce-feed {
+  width: 80%;
+  margin: 0 auto 4em auto;
+}
+
+.announce-feed--item {
+  margin-bottom: 1.4em;
+}
+
+.announce-feed--item--content--avatar,
+.announce-feed--item--content--message,
+.announce-feed--item--content--timestamp {
+  display: inline-block;
+}
+
+.announce-feed--item--content--timestamp {
+  float: right;
+  margin-top: 7px;
+  font-size: .8em;
+  color: #888;
+}
+
+.announce-feed--item--content--avatar img {
+  width: 32px;
+}
+
+.announce-feed--item--reactions--item {
+  margin: 5px 0 0 2em;
+}
+
+.announce-feed--item--reactions--item--header {
+  text-transform: uppercase;
+  font-size: .8em;
+  font-weight: 600;
+  color: #bbb;
+  margin-bottom: 4px;
+}
+
+.announce-feed--item--reactions--item--avatar img {
+  width: 24px;
+}
+
+.announce-feed--item--reactions--item--avatar,
+.announce-feed--item--reactions--item--check,
+.announce-feed--item--reactions--item--message {
+  display: inline-block;
 }

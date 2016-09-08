@@ -61,6 +61,49 @@ $(document).ready(function() {
           });
         }
       });
+
+      /*
+        Main functionality
+      */
+      // Load announcement feed
+      Bebo.Db.get('announcements', {}, function(err, data) {
+        if (err) {
+          return console.log('error getting announcements', err);
+        }
+        console.log('announcements', data);
+        for (var i = 0; i < data.result.length; i++) {
+          var html = '<div class="announce-feed--item">\
+            <div class="announce-feed--item--content">\
+              <div class="announce-feed--item--content--avatar">\
+                <img src="http://img.blab-dev.im/image/user/'+data.result[i].user+'">\
+              </div>\
+              <div class="announce-feed--item--content--message">\
+                '+data.result[i].message+'\
+              </div>\
+              <div class="announce-feed--item--content--timestamp">\
+                '+moment(data.result[i].created_dttm).fromNow()+'\
+              </div>\
+            </div>\
+            <div class="announce-feed--item--reactions">\
+              <div class="announce-feed--item--reactions--item">\
+                <div class="announce-feed--item--reactions--item--header">\
+                  17/20 seen\
+                </div>\
+                <div class="announce-feed--item--reactions--item--avatar">\
+                  <img src="http://img.blab-dev.im/image/user/7b46c63951024ffbb74cee8dd06ed607">\
+                </div>\
+                <div class="announce-feed--item--reactions--item--check">\
+                  ✔︎\
+                </div>\
+                <div class="announce-feed--item--reactions--item--message">\
+                  obvs me\
+                </div>\
+              </div>\
+            </div>\
+          </div>';
+          $('.announce-feed--list').append(html);
+        }
+      });
     });
   });
 });
