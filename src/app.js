@@ -28,6 +28,9 @@ $(document).ready(function() {
           $('.announce--share--button').css('background-color', '#888');
         }
       });
+      $('body').on('touchstart', function(e) {
+        $('.announce--input--text-entry').blur();
+      });
 
       // Share announcement
       $('.announce--share--button').click(function(e) {
