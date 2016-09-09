@@ -35,7 +35,7 @@ $(document).ready(function() {
       // Share announcement
       $('.announce--share--button').click(function(e) {
         if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
-          var title = "📢";
+          var title = "ANNOUNCEMENT: ";
           var body = $('.announce--input--text-entry').val().toUpperCase();
           Bebo.getRoster(function(err, roster){
             if(err){ return console.log('error getting roster', err) };
@@ -108,7 +108,7 @@ $(document).ready(function() {
             var html = '<div class="announce-feed--item" data-id="'+data.result[i].id+'">\
               <div class="announce-feed--item--content">\
                 <div class="announce-feed--item--content--avatar">\
-                  <img src="http://img.bebo.com/image/user/'+data.result[i].user+'">\
+                  <img src="https://img.bebo.com/image/user/'+data.result[i].user+'">\
                 </div>\
                 <div class="announce-feed--item--content--message">\
                   '+data.result[i].message+'\
@@ -129,10 +129,10 @@ $(document).ready(function() {
                 Seen\
               </div>\
               <div class="announce-feed--item--reactions--item--avatar">\
-                <img src="http://img.bebo.com/image/user/'+reactions.result[j].user+'">\
+                <img src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
               </div>\
               <div class="announce-feed--item--reactions--item--check">\
-                ✔︎\
+                <img src="assets/check.svg">\
               </div>\
               <div class="announce-feed--item--reactions--item--message">\
                 \

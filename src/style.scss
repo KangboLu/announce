@@ -413,6 +413,7 @@ h1 {
 
 .announce-feed--item--content--avatar img {
   width: 32px;
+  border-radius: 4px;
 }
 
 .announce-feed--item--reactions--item {
@@ -429,10 +430,15 @@ h1 {
 
 .announce-feed--item--reactions--item--avatar img {
   width: 24px;
+  border-radius: 3px;
 }
 
 .announce-feed--item--reactions--item--avatar,
 .announce-feed--item--reactions--item--check,
 .announce-feed--item--reactions--item--message {
   display: inline-block;
+}
+
+.announce-feed--item--reactions--item--check img {
+  width: 12px;
 }
