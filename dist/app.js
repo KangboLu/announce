@@ -184,7 +184,7 @@
 	                \
 	              </div>\
 	            </div>';
-	            $('.announce-feed--item[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
+	            $('.announce-feed--item[data-id="'+reactions.result[j].announcement+'"]').find('.announce-feed--item--reactions').append(reaction_html);
 	          }
 	        });
 	      });
