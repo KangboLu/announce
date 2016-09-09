@@ -28,6 +28,7 @@ $(document).ready(function() {
           $('.announce--share--button').css('background-color', '#888');
         }
       });
+      // Hide keyboard when tapping outside keyboard
       $('body').on('touchstart', function(e) {
         $('.announce--input--text-entry').blur();
       });
@@ -71,22 +72,26 @@ $(document).ready(function() {
       });
 
       // Mark as read upon scrolling into viewport
-      $('.announce-feed--list').on('DOMNodeInserted', '.announce-feed--item', function(){
-        var item = $(this)[0]
-        Bebo.Db.get('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
-          if(err) {
-            return console.log('error getting announcement reaction', err);
-          }
-          if (data.result.length === 0) {
-            console.log('no reaction found. creating...');
-            Bebo.Db.save('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
-              if(err) {
-                return console.log('error saving announcement', err);
-              }
-              console.log('successfully saved announcement reaction', data);
-            });
-          }
-        });
+      $('.announce-feed--list').on('DOMNodeInserted', '.announce-feed--item', function(e){
+        // Many nodes get inserted, we only want to fire when .announce-feed--item specifically is
+        if (e.target.className === 'announce-feed--item') {
+          var item = $(this)[0];
+          Bebo.Db.get('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
+            if(err) {
+              return console.log('error getting announcement reaction', err);
+            }
+            console.log('looked to see if reaction already exists. length is', data.result.length);
+            if (data.result.length === 0) {
+              console.log('no reaction found. creating...');
+              Bebo.Db.save('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
+                if(err) {
+                  return console.log('error saving announcement', err);
+                }
+                console.log('successfully saved announcement reaction', data);
+              });
+            }
+          });
+        }
       });
 
       /*
@@ -117,7 +122,7 @@ $(document).ready(function() {
                   '+moment(data.result[i].created_dttm).fromNow()+'\
                 </div>\
               </div>\
-              <div class="announce-feed--item--reactions">\
+              <div class="announce-feed--item--reactions" data-id="'+data.result[i].id+'">\
               </div>\
             </div>';
             $('.announce-feed--list').append(html);
@@ -138,7 +143,7 @@ $(document).ready(function() {
                 \
               </div>\
             </div>';
-            $('.announce-feed--item[data-id="'+reactions.result[j].announcement+'"]').find('.announce-feed--item--reactions').append(reaction_html);
+            $('.announce-feed--item--reactions[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
           }
         });
       });
