@@ -141,7 +141,7 @@
 	            <div class="announce-feed--item--reactions">\
 	              <div class="announce-feed--item--reactions--item">\
 	                <div class="announce-feed--item--reactions--item--header">\
-	                  17/20 seen\
+	                  1 seen\
 	                </div>\
 	                <div class="announce-feed--item--reactions--item--avatar">\
 	                  <img src="http://img.blab-dev.im/image/user/7b46c63951024ffbb74cee8dd06ed607">\
