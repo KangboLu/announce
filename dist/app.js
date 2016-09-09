@@ -150,7 +150,7 @@
 	                  ✔︎\
 	                </div>\
 	                <div class="announce-feed--item--reactions--item--message">\
-	                  obvs me\
+	                  \
 	                </div>\
 	              </div>\
 	            </div>\
