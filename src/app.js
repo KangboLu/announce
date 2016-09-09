@@ -108,7 +108,7 @@ $(document).ready(function() {
             var html = '<div class="announce-feed--item" data-id="'+data.result[i].id+'">\
               <div class="announce-feed--item--content">\
                 <div class="announce-feed--item--content--avatar">\
-                  <img src="https://img.bebo.com/image/user/'+data.result[i].user+'">\
+                  <img src="https://img.blab-dev.im/image/user/'+data.result[i].user+'">\
                 </div>\
                 <div class="announce-feed--item--content--message">\
                   '+data.result[i].message+'\
@@ -129,7 +129,7 @@ $(document).ready(function() {
                 Seen\
               </div>\
               <div class="announce-feed--item--reactions--item--avatar">\
-                <img src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
+                <img src="https://img.blab-dev.im/image/user/'+reactions.result[j].user+'">\
               </div>\
               <div class="announce-feed--item--reactions--item--check">\
                 <img src="assets/check.svg">\
