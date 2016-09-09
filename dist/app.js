@@ -94,6 +94,14 @@
 	              $('.header--text-preview').html(default_text);
 	            });
 
+	            // save to db
+	            Bebo.Db.save('announcements', {'message': body, 'user': me.user_id}, function(err, data) {
+	              if(err) {
+	                return console.log('error saving announcement', err);
+	              }
+	              console.log('successfully saved announcement', data);
+	            });
+
 	            // push the notifications
 	            console.log('got roster', roster);
 	            users = [];
