@@ -70,6 +70,25 @@ $(document).ready(function() {
         }
       });
 
+      // Mark as read upon scrolling into viewport
+      $('.announce-feed--list').on('DOMNodeInserted', '.announce-feed--item', function(){
+        var item = $(this)[0]
+        Bebo.Db.get('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
+          if(err) {
+            return console.log('error getting announcement reaction', err);
+          }
+          if (data.result.length === 0) {
+            console.log('no reaction found. creating...');
+            Bebo.Db.save('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
+              if(err) {
+                return console.log('error saving announcement', err);
+              }
+              console.log('successfully saved announcement reaction', data);
+            });
+          }
+        });
+      });
+
       /*
         Main functionality
       */
@@ -78,39 +97,50 @@ $(document).ready(function() {
         if (err) {
           return console.log('error getting announcements', err);
         }
-        console.log('announcements', data);
-        for (var i = 0; i < data.result.length; i++) {
-          var html = '<div class="announce-feed--item">\
-            <div class="announce-feed--item--content">\
-              <div class="announce-feed--item--content--avatar">\
-                <img src="http://img.blab-dev.im/image/user/'+data.result[i].user+'">\
-              </div>\
-              <div class="announce-feed--item--content--message">\
-                '+data.result[i].message+'\
-              </div>\
-              <div class="announce-feed--item--content--timestamp">\
-                '+moment(data.result[i].created_dttm).fromNow()+'\
-              </div>\
-            </div>\
-            <div class="announce-feed--item--reactions">\
-              <div class="announce-feed--item--reactions--item">\
-                <div class="announce-feed--item--reactions--item--header">\
-                  1 seen\
+        Bebo.Db.get('announcements_reactions', {}, function(reactions_err, reactions) {
+          if (err) {
+            return console.log('error getting reactions', reactions_err);
+          }
+          console.log('announcements', data);
+          console.log('reactions', reactions);
+          // loop through announcements
+          for (var i = 0; i < data.result.length; i++) {
+            var html = '<div class="announce-feed--item" data-id="'+data.result[i].id+'">\
+              <div class="announce-feed--item--content">\
+                <div class="announce-feed--item--content--avatar">\
+                  <img src="http://img.bebo.com/image/user/'+data.result[i].user+'">\
                 </div>\
-                <div class="announce-feed--item--reactions--item--avatar">\
-                  <img src="http://img.blab-dev.im/image/user/7b46c63951024ffbb74cee8dd06ed607">\
+                <div class="announce-feed--item--content--message">\
+                  '+data.result[i].message+'\
                 </div>\
-                <div class="announce-feed--item--reactions--item--check">\
-                  ✔︎\
-                </div>\
-                <div class="announce-feed--item--reactions--item--message">\
-                  \
+                <div class="announce-feed--item--content--timestamp">\
+                  '+moment(data.result[i].created_dttm).fromNow()+'\
                 </div>\
               </div>\
-            </div>\
-          </div>';
-          $('.announce-feed--list').append(html);
-        }
+              <div class="announce-feed--item--reactions">\
+              </div>\
+            </div>';
+            $('.announce-feed--list').append(html);
+          }
+          // loop through reactions
+          for (var j = 0; j < reactions.result.length; j++) {
+            var reaction_html = '<div class="announce-feed--item--reactions--item">\
+              <div class="announce-feed--item--reactions--item--header">\
+                Seen\
+              </div>\
+              <div class="announce-feed--item--reactions--item--avatar">\
+                <img src="http://img.bebo.com/image/user/'+reactions.result[j].user+'">\
+              </div>\
+              <div class="announce-feed--item--reactions--item--check">\
+                ✔︎\
+              </div>\
+              <div class="announce-feed--item--reactions--item--message">\
+                \
+              </div>\
+            </div>';
+            $('.announce-feed--item[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
+          }
+        });
       });
     });
   });
