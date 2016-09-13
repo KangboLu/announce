@@ -123,6 +123,9 @@ $(document).ready(function() {
                 </div>\
               </div>\
               <div class="announce-feed--item--reactions" data-id="'+data.result[i].id+'">\
+                <div class="announce-feed--item--reactions--item--header">\
+                  Seen\
+                </div>\
               </div>\
             </div>';
             $('.announce-feed--list').append(html);
@@ -130,9 +133,6 @@ $(document).ready(function() {
           // loop through reactions
           for (var j = 0; j < reactions.result.length; j++) {
             var reaction_html = '<div class="announce-feed--item--reactions--item">\
-              <div class="announce-feed--item--reactions--item--header">\
-                Seen\
-              </div>\
               <div class="announce-feed--item--reactions--item--avatar">\
                 <img src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
               </div>\
