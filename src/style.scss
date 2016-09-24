@@ -12,8 +12,8 @@
 $buttonSize: 50px;
 
 body {
-  background: rgb(11,182,52);
-  color: #fff;
+  background: #5E71DD;
+  color: $color-white;
 }
 
 .announce-header {
@@ -51,14 +51,14 @@ body {
   width: 90%;
   max-width: calc-em(335px);
   border-radius: 16px;
-  background: rgba(225,225,225,0.7);
+  background: rgba(0,0,0,0.25);
   margin: 0 auto;
 }
 
 .announce--item-header {
   @extend .flex-row;
   height: calc-em(40px);
-  background: rgba(255,255,255,0.5);
+  background: rgba(0,0,0,0.25);
   width: 100%;
   border-radius: 16px 16px 0 0;
   .announce--item-avatar {
@@ -70,7 +70,7 @@ body {
   }
   .announce--item-name {
     @extend .font-size-small;
-    color: $color-black;
+    color: $color-white;
     flex: 1 0 auto;
   }
 }
@@ -89,16 +89,16 @@ body {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: rgba(33,35,38,0.4);
+  color: rgba(255,255,255,0.4);
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: rgba(33,35,38,0.4);
+  color: rgba(255,255,255,0.4);
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: rgba(33,35,38,0.4);
+  color: rgba(255,255,255,0.4);
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: rgba(33,35,38,0.4);
+  color: rgba(255,255,255,0.4);
 }
 
 .announce--share {
@@ -108,10 +108,9 @@ body {
 .announce--share--button {
   @extend .flex-row-center;
   @extend .font-size-default;
-  width: 90%;
-  max-width: calc-em(335px);
-  background-color: $color-white;
-  color: $color-black;
+  width: calc-em(280px);
+  background-color: #01C270;
+  color: $color-white;
   text-transform: uppercase;
   padding: calc-em(16px);
   border-radius: 8px;
@@ -134,12 +133,12 @@ body {
   @extend .font-size-small;
   overflow: hidden;
   text-align: center;
-  margin: calc-em(10px) auto calc-em(10px);
-  color: rgba(255,255,255,0.5);
+  margin: calc-em(25px) auto calc-em(25px);
+  color: rgba(255,255,255,0.25);
 }
 .announce-feed--header:before,
 .announce-feed--header:after {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.1);
   content: "";
   display: inline-block;
   height: 1px;
@@ -158,7 +157,8 @@ body {
 
 .announce-feed--list {
   .announce--item {
-    margin-bottom: calc-em(10px);
+    margin-bottom: calc-em(20px);
+    opacity: 0.5;
   }
 }
 
@@ -166,24 +166,24 @@ body {
   padding-right: calc-em(9px);
   text-align: right;
   font-size: calc-em(12px);
-  color: $color-black;
+  color: $color-white;
 }
 
 .announce--item-message {
   padding: calc-em(16px);
-  color: $color-black;
+  color: $color-white;
   @extend .font-size-default;
 }
 
 .announce--item-reactions {
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);
   margin: 0 calc-em(16px);
   padding-bottom: calc-em(15px);
 }
 
 .announce--item-reactions-header {
   @extend .font-size-small;
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.5);
   margin: calc-em(8px) 0 calc-em(5px);
 }
 
