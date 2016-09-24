@@ -6,7 +6,7 @@ $(document).ready(function() {
     console.log('bebo ready');
     Bebo.UI.disableKeyboardDoneStrip();
     Bebo.User.get('me', function(err, user){
-      if(err){ 
+      if(err){
           return console.log('error retrieving user', err);
       }
       var me = user;
@@ -110,22 +110,21 @@ $(document).ready(function() {
           console.log('reactions', reactions);
           // loop through announcements
           for (var i = 0; i < data.result.length; i++) {
-            var html = '<div class="announce-feed--item" data-id="'+data.result[i].id+'">\
-              <div class="announce-feed--item--content">\
-                <div class="announce-feed--item--content--avatar">\
-                  <img src="https://img.bebo.com/image/user/'+data.result[i].user+'">\
+            var html = '<div class="announce--item" data-id="'+data.result[i].id+'">\
+                <div class="announce--item-header">\
+                  <img class="announce--item-avatar" src="https://img.bebo.com/image/user/'+data.result[i].user+'">\
+                  <p class="announce--item-name">XXXX USERNAME XXXX</p>\
+                  <div class="announce--item-timestamp">\
+                    '+moment(data.result[i].created_dttm).fromNow()+'\
+                  </div>\
                 </div>\
-                <div class="announce-feed--item--content--message">\
+                <div class="announce--item-message">\
                   '+data.result[i].message+'\
                 </div>\
-                <div class="announce-feed--item--content--timestamp">\
-                  '+moment(data.result[i].created_dttm).fromNow()+'\
-                </div>\
-              </div>\
-              <div class="announce-feed--item--reactions" data-id="'+data.result[i].id+'">\
-                <div class="announce-feed--item--reactions--item--header">\
-                  Seen\
-                </div>\
+              <div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
+                <p class="announce--item-reactions-header">\
+                  seen by\
+                </p>\
               </div>\
             </div>';
             $('.announce-feed--list').append(html);
@@ -133,17 +132,9 @@ $(document).ready(function() {
           // loop through reactions
           for (var j = 0; j < reactions.result.length; j++) {
             var reaction_html = '<div class="announce-feed--item--reactions--item">\
-              <div class="announce-feed--item--reactions--item--avatar">\
-                <img src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
-              </div>\
-              <div class="announce-feed--item--reactions--item--check">\
-                <img src="assets/check.svg">\
-              </div>\
-              <div class="announce-feed--item--reactions--item--message">\
-                \
-              </div>\
+            <img class="announce--item-reaction-avatar" src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
             </div>';
-            $('.announce-feed--item--reactions[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
+            $('.announce--item-reactions[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
           }
         });
       });

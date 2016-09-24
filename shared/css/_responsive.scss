@@ -1,0 +1,27 @@
+@import "mixins";
+
+$font-size: 16px;
+$break-phone: 600px;
+$break-tablet-s: 767px;
+$break-tablet-p: 960px;
+$break-tablet-l: 1140px;
+$break-desktop: 1441px;
+$break-desktop-l: 1600px;
+
+.flex-row {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  > * {
+    @include flex(0 0 auto);
+  }
+}
+
+.flex-row-center {
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+  > * {
+    @include flex(0 0 auto);
+  }
+}

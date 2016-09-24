@@ -1,0 +1,96 @@
+@import "responsive";
+@import "colors";
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// TYPEFACES
+
+@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
+
+$font-family-base: 'Montserrat', 'Open Sans', 'San Francisco', 'Roboto', 'Arial', sans-serif;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// FONT SIZES
+
+.font-size-huge {
+  font-size: calc-em(36px);
+}
+.font-size-large {
+  font-size: calc-em(28px);
+}
+.font-size-medium {
+  font-size: calc-em(18px);
+}
+.font-size-default {
+  font-size: calc-em(16px);
+}
+.font-size-small {
+  font-size: calc-em(14px);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// FONT STYLES
+
+html, body {
+  font-size: $font-size;
+  line-height: 1.25;
+  font-family: $font-family-base;
+  font-weight: 400;
+  word-wrap: break-word;
+  color: $color-black;
+}
+
+h1 {
+  @extend .font-size-huge;
+  font-weight: 400;
+  hyphens: auto;
+}
+h2 {
+  @extend .font-size-large;
+  font-weight: 400;
+  color: $color-brand;
+}
+h3 {
+  @extend .font-size-medium;
+  font-weight: 400;
+}
+h4 {
+  @extend .font-size-medium;
+  font-weight: 400;
+  color: $color-grey;
+}
+h5 {
+  @extend .font-size-default;
+  font-weight: 400;
+}
+p {
+  @extend .font-size-default;
+  font-weight: 400;
+}
+small {
+  @extend .font-size-small;
+}
+
+a {
+  color: $color-brand;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    color: $color-brand;
+    text-decoration: none;
+  }
+  @include transition(all .2s);
+}
+
+em, .em {
+  font-style: italic;
+}
+strong, .strong {
+  font-weight: 700;
+}
+button{
+  font-family: $font-family-base;
+  cursor: pointer;
+}
+textarea, input{
+  font-family: $font-family-base;
+}
