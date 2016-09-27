@@ -136,6 +136,7 @@ function load() {
         } else {
           announcement_reaction[announcement_id] = [reaction.user];
         }
+        console.log('annre:', announcement_reaction);
       }
 
       // loop through announcements
@@ -148,6 +149,8 @@ function load() {
         }
 
         var reactions_html = '';
+
+        console.log(announcement_reaction);
         if (announcement_reaction[this_announcement.id]) {
           var reactions_html = '<div class="announce--item-reactions" data-id="'+this_announcement.id+'">\
           <p class="announce--item-reactions-header">\
