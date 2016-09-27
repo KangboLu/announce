@@ -175,7 +175,7 @@
 	              var username = "";
 	            }
 
-	            if (announcement_reaction[this_announcement]) {
+	            if (announcement_reaction[this_announcement.id]) {
 	              var reactions_html = '<div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
 	              <p class="announce--item-reactions-header">\
 	              seen by\
