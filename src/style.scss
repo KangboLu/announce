@@ -177,6 +177,7 @@ body {
   border-top: 1px solid rgba(255,255,255,0.1);
   margin: 0 calc-em(16px);
   padding-bottom: calc-em(15px);
+  @extend .cf;
 }
 
 .announce--item-reactions-header {
