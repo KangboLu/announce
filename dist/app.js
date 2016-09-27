@@ -97,18 +97,17 @@
 
 	              // push the notifications
 	              console.log('got roster', roster);
-	              users = [];
+	              var users = [];
 	              for (var i = 0; i < roster.length; i++) {
-	                users.push(roster.user_id);
+	                users.push(roster[i].user_id);
 	              }
+
 	              Bebo.Notification.users(title, body, users, function(err, resp){
 	                if(err){ return console.log('error sending notification', err) };
 	                console.log('sent notification', resp);
 	              });
 
-	              // refresh page to see new item
-	              window.location.reload(true);
-
+	              //window.location.reload(true);
 	            });
 	          });
 	        }
@@ -119,6 +118,7 @@
 	        // Many nodes get inserted, we only want to fire when .announce-feed--item specifically is
 	        if (e.target.className === 'announce-feed--item') {
 	          var item = $(this)[0];
+
 	          Bebo.Db.get('announcements_reactions', {'announcement': $(item).data('id'), 'user': me.user_id}, function(err, data) {
 	            if(err) {
 	              return console.log('error getting announcement reaction', err);
@@ -204,9 +204,11 @@
 
 	          // loop through reactions
 	          for (var j = 0; j < reactions.result.length; j++) {
+	            var image_url = Bebo.Utils.getImageUrl() + reactions.result[j].user;
 	            var reaction_html = '<div class="announce-feed--item--reactions--item">\
-	            <img class="announce--item-reaction-avatar" src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
-	            </div>';
+	                  <img class="announce--item-reaction-avatar" src="'+ image_url+'">\
+	                </div>';
+
 	            $('.announce--item-reactions[data-id="'+reactions.result[j].announcement+'"]').append(reaction_html);
 	          }
 	        });
