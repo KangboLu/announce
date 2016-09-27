@@ -136,12 +136,14 @@ function load() {
         } else {
           announcement_reaction[announcement_id] = [reaction.user];
         }
-        console.log('annre:', announcement_reaction);
       }
+
+      console.log('announcement reactions:', announcement_reaction);
 
       // loop through announcements
       for (var i = 0; i < data.result.length; i++) {
         var this_announcement = data.result[i];
+        console.log('this_announcement:', this_announcement);
 
         var username = "";
         if (this_announcement.username) {
@@ -149,10 +151,9 @@ function load() {
         }
 
         var reactions_html = '';
-
-        console.log(announcement_reaction);
         if (announcement_reaction[this_announcement.id]) {
-          var reactions_html = '<div class="announce--item-reactions" data-id="'+this_announcement.id+'">\
+          console.log('seen by header added for', this_announcement.id);
+          reactions_html = '<div class="announce--item-reactions" data-id="'+this_announcement.id+'">\
           <p class="announce--item-reactions-header">\
           seen by\
           </p>\
@@ -180,6 +181,7 @@ function load() {
       // loop through reactions
       for (var j = 0; j < reactions.result.length; j++) {
         var image_url = Bebo.Utils.getImageUrl() + 'image/user/' + reactions.result[j].user;
+
         var reaction_html = '<div class="announce-feed--item--reactions--item">\
         <img class="announce--item-reaction-avatar" src="'+ image_url+'">\
         </div>';
