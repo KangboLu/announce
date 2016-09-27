@@ -52,8 +52,8 @@ $(document).ready(function() {
               // push the notifications
               console.log('got roster', roster);
               users = [];
-              for (var i = 0; i < roster.result.length; i++) {
-                users.push(roster.result[i].user_id);
+              for (var i = 0; i < roster.length; i++) {
+                users.push(roster.user_id);
               }
               Bebo.Notification.users(title, body, users, function(err, resp){
                 if(err){ return console.log('error sending notification', err) };
@@ -105,19 +105,35 @@ $(document).ready(function() {
           }
           console.log('announcements', data);
           console.log('reactions', reactions);
+
+
+          var announcement_reaction = {};
+
+          for (var k = 0; k < reactions.result.length; k++) {
+            var reaction = reactions.result[k];
+            var announcement_id = reaction.announcement;
+            if (announcement_reaction[announcement_id]) {
+              announcement_reaction[announcement_id].push(reaction.user);
+            } else {
+              announcement_reaction[announcement_id] = [reaction.user];
+            }
+          }
+
           // loop through announcements
           for (var i = 0; i < data.result.length; i++) {
-            if (data.result[i].username) {
-              var username = data.result[i].username;
+            var this_announcement = data.result[i];
+
+            if (this_announcement.username) {
+              var username = this_announcement.username;
             } else {
               var username = "";
             }
 
-            if (reactions.total_results > 0) {
+            if (announcement_reaction[this_announcement]) {
               var reactions_html = '<div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
-                <p class="announce--item-reactions-header">\
-                  seen by\
-                </p>\
+              <p class="announce--item-reactions-header">\
+              seen by\
+              </p>\
               </div>';
             } else {
               var reactions_html = '';
@@ -136,8 +152,10 @@ $(document).ready(function() {
                 </div>\
                 '+reactions_html+'\
             </div>';
+
             $('.announce-feed--list').append(html);
           }
+
           // loop through reactions
           for (var j = 0; j < reactions.result.length; j++) {
             var reaction_html = '<div class="announce-feed--item--reactions--item">\
