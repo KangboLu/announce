@@ -114,11 +114,7 @@ $(document).ready(function() {
             }
 
             if (reactions.total_results > 0) {
-              var reactions_html = '<div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
-                <p class="announce--item-reactions-header">\
-                  seen by\
-                </p>\
-              </div>';
+
             } else {
               var reactions_html = '';
             }
@@ -134,12 +130,19 @@ $(document).ready(function() {
                 <div class="announce--item-message">\
                   '+data.result[i].message+'\
                 </div>\
-                '+reactions_html+'\
+                '+reactions_header_html+'\
             </div>';
             $('.announce-feed--list').append(html);
           }
           // loop through reactions
           for (var j = 0; j < reactions.result.length; j++) {
+
+            var reactions_header_html = '<div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
+                <p class="announce--item-reactions-header">\
+                  seen by\
+                </p>\
+              </div>';
+
             var reaction_html = '<div class="announce-feed--item--reactions--item">\
             <img class="announce--item-reaction-avatar" src="https://img.bebo.com/image/user/'+reactions.result[j].user+'">\
             </div>';
