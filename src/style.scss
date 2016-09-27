@@ -9,8 +9,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 // ROOM STYLES
 
-$buttonSize: 50px;
-
 body {
   background: #5E71DD;
   color: $color-white;
@@ -81,7 +79,7 @@ body {
   -webkit-appearance: none;
   width: 100%;
   margin: 0 auto;
-  color: $color-black;
+  color: $color-white;
   padding: calc-em(16px);
   border: 0;
   outline: 0;
@@ -109,7 +107,7 @@ body {
   @extend .flex-row-center;
   @extend .font-size-default;
   width: calc-em(280px);
-  background-color: #01C270;
+  background-color: #2cbf76;
   color: $color-white;
   text-transform: uppercase;
   padding: calc-em(16px);

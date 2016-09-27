@@ -12,20 +12,17 @@ $(document).ready(function() {
       var me = user;
       console.log('me', me);
 
-      default_text = "Halo @ Jason's NOW &#x1f46f";
-
-      $('.header--text-preview').html(default_text);
+      $('.my-username').html(me.username);
+      $('.my-image').attr('src', me.image_url);
 
       /*
         Listeners
       */
       // Preview text input
       $('.announce--input--text-entry').on('keyup', function(e) {
-        $('.header--text-preview').html(e.target.value);
         $('.announce--share--button').css('background-color', '#2cbf76');
         if (e.target.value.length === 0) {
-          $('.header--text-preview').html(default_text);
-          $('.announce--share--button').css('background-color', '#888');
+          $('.announce--share--button').css('opacity', '0.5');
         }
       });
       // Hide keyboard when tapping outside keyboard
@@ -37,35 +34,35 @@ $(document).ready(function() {
       $('.announce--share--button').click(function(e) {
         if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
           var title = "ANNOUNCEMENT: ";
-          var body = $('.announce--input--text-entry').val().toUpperCase();
+          var body = $('.announce--input--text-entry').val();
           Bebo.getRoster(function(err, roster){
             if(err){ return console.log('error getting roster', err) };
 
             // clear announcement text input & show success state
             $('.announce--input--text-entry').val('');
-            $('.announce--share--button').css('background-color', '#888');
-            $('.header').css('background-color', '#2cbf76').delay(3000).queue(function() {
-              $(this).css('background-color', '#55b5c9');
-              $('.header--text-preview').html(default_text);
-            });
+            $('.announce--share--button').css('opacity', '0.5').html('<span>Sent</span>');
 
             // save to db
-            Bebo.Db.save('announcements', {'message': body, 'user': me.user_id}, function(err, data) {
+            Bebo.Db.save('announcements', {'message': body, 'user': me.user_id, 'username': me.username}, function(err, data) {
               if(err) {
                 return console.log('error saving announcement', err);
               }
               console.log('successfully saved announcement', data);
-            });
 
-            // push the notifications
-            console.log('got roster', roster);
-            users = [];
-            for (var i = 0; i < roster.result.length; i++) {
-              users.push(roster.result[i].user_id);
-            }
-            Bebo.Notification.users(title, body, users, function(err, resp){
-              if(err){ return console.log('error sending notification', err) };
-              console.log('sent notification', resp);
+              // push the notifications
+              console.log('got roster', roster);
+              users = [];
+              for (var i = 0; i < roster.result.length; i++) {
+                users.push(roster.result[i].user_id);
+              }
+              Bebo.Notification.users(title, body, users, function(err, resp){
+                if(err){ return console.log('error sending notification', err) };
+                console.log('sent notification', resp);
+              });
+
+              // refresh page to see new item
+              window.location.reload(true);
+
             });
           });
         }
@@ -110,10 +107,26 @@ $(document).ready(function() {
           console.log('reactions', reactions);
           // loop through announcements
           for (var i = 0; i < data.result.length; i++) {
+            if (data.result[i].username) {
+              var username = data.result[i].username;
+            } else {
+              var username = "";
+            }
+
+            if (reactions.total_results > 0) {
+              var reactions_html = '<div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
+                <p class="announce--item-reactions-header">\
+                  seen by\
+                </p>\
+              </div>';
+            } else {
+              var reactions_html = '';
+            }
+
             var html = '<div class="announce--item" data-id="'+data.result[i].id+'">\
                 <div class="announce--item-header">\
                   <img class="announce--item-avatar" src="https://img.bebo.com/image/user/'+data.result[i].user+'">\
-                  <p class="announce--item-name">XXXX USERNAME XXXX</p>\
+                  <p class="announce--item-name">'+username+'</p>\
                   <div class="announce--item-timestamp">\
                     '+moment(data.result[i].created_dttm).fromNow()+'\
                   </div>\
@@ -121,11 +134,7 @@ $(document).ready(function() {
                 <div class="announce--item-message">\
                   '+data.result[i].message+'\
                 </div>\
-              <div class="announce--item-reactions" data-id="'+data.result[i].id+'">\
-                <p class="announce--item-reactions-header">\
-                  seen by\
-                </p>\
-              </div>\
+                '+reactions_html+'\
             </div>';
             $('.announce-feed--list').append(html);
           }
