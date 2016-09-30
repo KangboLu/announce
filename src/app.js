@@ -119,7 +119,7 @@ function load() {
     if (err) {
       return console.log('error getting announcements', err);
     }
-    Bebo.Db.get('announcements_reactions', {count: 500}, function(reactions_err, reactions) {
+    Bebo.Db.get('announcements_reactions', {count: 500, sort_by:"created_dttm"}, function(reactions_err, reactions) {
       if (err) {
         return console.log('error getting reactions', reactions_err);
       }
