@@ -49,10 +49,8 @@
 
 	var me = {};
 	$(document).ready(function() {
-	  console.log('document ready');
 
 	  Bebo.onReady(function() {
-	    console.log('bebo ready');
 	    Bebo.UI.disableKeyboardDoneStrip();
 
 	    setupListeners();
@@ -66,7 +64,6 @@
 	        return console.log('error retrieving user', err);
 	      }
 	      me = user;
-	      console.log('me', me);
 
 	      $('.my-username').html(me.username);
 	      $('.my-image').attr('src', me.image_url);
@@ -169,8 +166,6 @@
 	      if (err) {
 	        return console.log('error getting reactions', reactions_err);
 	      }
-	      console.log('announcements', data);
-	      console.log('reactions', reactions);
 
 	      var announcement_reaction = {};
 
@@ -184,12 +179,9 @@
 	        }
 	      }
 
-	      console.log('announcement reactions:', announcement_reaction);
-
 	      // loop through announcements
 	      for (var i = 0; i < data.result.length; i++) {
 	        var this_announcement = data.result[i];
-	        console.log('this_announcement:', this_announcement);
 
 	        var username = "";
 	        if (this_announcement.username) {
@@ -198,7 +190,6 @@
 
 	        var reactions_html = '';
 	        if (announcement_reaction[this_announcement.id]) {
-	          console.log('seen by header added for', this_announcement.id);
 	          reactions_html = '<div class="announce--item-reactions" data-id="'+this_announcement.id+'">\
 	          <p class="announce--item-reactions-header">\
 	          seen by\
