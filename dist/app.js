@@ -94,34 +94,25 @@
 	    if ($('.announce--input--text-entry').val() !== '') { // don't notify if text input is empty
 	      var title = "ANNOUNCEMENT: ";
 	      var body = $('.announce--input--text-entry').val();
-	      Bebo.getRoster(function(err, roster){
-	        if(err){ return console.log('error getting roster', err) };
 
-	        // clear announcement text input & show success state
-	        $('.announce--input--text-entry').val('');
-	        $('.announce--share--button').css('opacity', '0.5').html('<span>Sent</span>');
+	      // clear announcement text input & show success state
+	      $('.announce--input--text-entry').val('');
+	      $('.announce--share--button').css('opacity', '0.5').html('<span>Sent</span>');
 
-	        // save to db
-	        Bebo.Db.save('announcements', {'message': body, 'user': me.user_id, 'username': me.username}, function(err, data) {
-	          if(err) {
-	            return console.log('error saving announcement', err);
-	          }
-	          console.log('successfully saved announcement', data);
+	      // save to db
+	      Bebo.Db.save('announcements', {'message': body, 'user': me.user_id, 'username': me.username}, function(err, data) {
+	        if(err) {
+	          return console.log('error saving announcement', err);
+	        }
+	        console.log('successfully saved announcement');
 
-	          // push the notifications
-	          console.log('got roster', roster);
-	          var users = [];
-	          for (var i = 0; i < roster.length; i++) {
-	            users.push(roster[i].user_id);
-	          }
-
-	          Bebo.Notification.users(title, body, users, function(err, resp){
-	            if(err){ return console.log('error sending notification', err) };
-	            console.log('sent notification', resp);
-	          });
-
-	          Bebo.Room.emitEvent({});
+	        // push the notifications
+	        Bebo.Notification.roster(title, body, function(err, resp){
+	          if(err){ return console.log('error sending notification', err) };
+	          console.log('notification sent to roster');
 	        });
+
+	        Bebo.Room.emitEvent({});
 	      });
 	    }
 	  });
